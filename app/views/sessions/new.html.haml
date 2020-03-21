@@ -1,0 +1,7 @@
+%h1 User Login
+
+= simple_form_for :sessions, url: sessions_path do |f|
+  = f.input :email, required: true, placeholder: 'Email Address'
+  = f.input :password, required: true, placeholder: 'Password'
+
+  = f.button :submit, 'Login'

@@ -24,7 +24,7 @@ module Ibsa
         :view_specs => false,
         :helper_specs => false,
         :routing_specs => false,
-        :controller_specs => true,
+        :controller_specs => false,
         :request_specs => true
       g.factory_bot dir: "spec/factories", suffix: "factory"
     end
