@@ -1,4 +1,12 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
+
+	// Datetime picker init
+  $('.datetimepicker').datetimepicker({
+  	format: "DD/MM/YYYY HH:mm",
+  	disabledTimeIntervals: false
+  });
+
+  // Toast message
   Array.from(document.getElementById('toast-msg').getElementsByClassName('toast-box')).forEach((element) => {
     element.getElementsByClassName('toast-action')[0].addEventListener('click', function(){
       element.classList.remove('show')
@@ -12,4 +20,5 @@ $(document).ready(function(){
       element.remove()
     }, 6000);
   });
-});
+
+})

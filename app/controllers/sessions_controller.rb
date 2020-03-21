@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params.dig(:sessions, :password))
       session[:user_id] = user.id
       flash[:notice] = 'User successfully logged in!'
-      redirect_to root_path
+      redirect_to goods_path
     else
       flash.now[:alert] = 'Email or password is invalid'
       render :new

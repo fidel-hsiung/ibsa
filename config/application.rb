@@ -16,6 +16,9 @@ module Ibsa
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    config.time_zone = 'Melbourne'
+    Time::DATE_FORMATS[:time] = '%d/%m/%Y %H:%M'
+
     config.generators do |g|
       g.helper false
       g.assets false

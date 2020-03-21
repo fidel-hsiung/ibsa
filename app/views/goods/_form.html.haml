@@ -1,0 +1,24 @@
+.action-panel
+  .row.align-items-center.mb-3
+    .col
+      %h2= @good.new_record? ? 'Create new Good' : "Edit Good"
+  = simple_form_for(@good) do |f|
+    .row.align-items-center.mb-3
+      .col
+        = link_to 'Back', goods_path, class: 'btn btn-dark btn-sm text-uppercase font-weight-bolder'
+      .col.text-right
+        - unless @good.new_record?
+          = link_to 'Delete', good_path(@good), method: :delete, class: 'btn btn-danger btn-sm text-uppercase font-weight-bolder', data: {confirm: "Are you sure you want to delete this good?"}
+        = f.button :button, "Cancel", type: "reset", class: "btn-light-gray btn-sm text-uppercase font-weight-bolder"
+        = f.button :submit, "Save", class: "btn-primary btn-sm text-uppercase font-weight-bolder"
+    .row
+      .col-6= f.input :category
+      .col-6= f.input :name
+      .col-6= f.input :source
+      .col-6= f.input :destination
+      .col-6= f.input :consignment_id
+      .col-6= f.input :left_facility, collection: [['True', true], ['False', false]], prompt: 'Select'
+    %hr
+    .row
+      .col-6= f.input :entry_at, as: :string, input_html: {class: 'datetimepicker', value: f.object.entry_at_aus}
+      .col-6= f.input :exit_at, as: :string, input_html: {class: 'datetimepicker', value: f.object.exit_at_aus}

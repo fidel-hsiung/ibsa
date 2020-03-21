@@ -1,0 +1,15 @@
+.table-responsive-lg.mt-2
+  %table.table
+    %thead
+      %tr
+        %th{:scope => "col"}
+        - model::TABLE_HEADS.each do |head|
+          %th{:scope => "col"}= head
+    %tbody
+      - records.each do |record|
+        %tr
+          %th{:scope => "row"}
+            = link_to send("edit_#{model.model_name.singular_route_key}_path".to_sym, record), class: 'text-secondary' do
+              = fa_icon 'cog'
+          - model::TABLE_BODYS.each do |body|
+            %td= record.try(body.to_sym)

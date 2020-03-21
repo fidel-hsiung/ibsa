@@ -1,0 +1,7 @@
+.index-table-panel
+  .row.align-items-center
+    .col
+      %h2 Goods
+    .col.text-right
+      = link_to 'New Good', new_good_path, class: 'btn btn-primary btn-sm'
+  = render 'index_table', model: Good, records: @goods
