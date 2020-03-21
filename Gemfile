@@ -40,6 +40,9 @@ gem 'simple_form'
 # Use haml for html coding
 gem "haml-rails", "~> 2.0"
 
+# Use font awesome library for icons
+gem "font-awesome-rails"
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

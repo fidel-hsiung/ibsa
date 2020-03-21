@@ -1,7 +1,13 @@
-%h1 Pages#home
-%p Find me in app/views/pages/home.html.haml
-
 - if current_user
-  Logged in as #{current_user.full_name}
+  .font-weight-bolder Welcome #{current_user.full_name}.
+  %span You can start to 
+  %span= link_to 'management goods storage.', ''
+
+  %p.mt-3
+    Not you?
+    %span= link_to 'Click here to logout', logout_path, method: :delete
 - else
-  = link_to 'Log In', login_path
+  .font-weight-bolder Welcome to Goods Storage Management Facility.
+  %span Please 
+  %span= link_to 'Log in', login_path 
+  %span before management the goods storage.
