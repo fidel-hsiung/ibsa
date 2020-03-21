@@ -21,4 +21,17 @@ $(document).on('turbolinks:load', function() {
     }, 6000);
   });
 
-})
+});
+
+var csv_upload_select = function(input) {
+  let name = $('#file-name');
+  let file = input.files[0];
+
+  if (file){
+    name.html(file.name);
+    $('#csv-submit-button').removeClass('hide');
+  } else {
+    name.html('');
+    $('#csv-submit-button').addClass('hide');
+  }
+};

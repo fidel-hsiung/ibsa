@@ -37,6 +37,12 @@ class GoodsController < ApplicationController
     redirect_to goods_url
   end
 
+  def bulk_new
+  end
+
+  def bulk_create
+  end
+
   private
   def set_good
     @good = Good.find(params[:id])

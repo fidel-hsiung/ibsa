@@ -1,0 +1,33 @@
+.sub-page
+  .row.align-items-center
+    .col
+      %h2 Bulk Upload Goods
+  .row
+    .ml-3 You can upload a csv file to bulk create goods. However the csv file should follow the following guidance.
+    %ul
+      %li The csv should have a header, and the order is 'Type', 'Name', 'Source', 'Destination', 'Consignment ID', 'Entry At', 'Exit At'
+      %li The first column of the csv should be the index of goods
+      %li The attributes are case sensitive, that is to say they should be consistent. (eg: Do not mix Food and food)
+      %li The attributes are checking with 100% match. (eg: do not mix Australia/Sydney, AustraliaSydney, Sydney)
+      %li The Entry At and Exit At are using Melbourne time.
+  %hr
+  .row.csv-example
+    %p.ml-3 Example as following image:
+    = image_tag 'example-csv.jpg'
+  %hr
+  = form_tag(bulk_create_goods_path, multipart: true, remote: true) do
+    .row
+      .form-group.image-upload-btn.ml-5
+        %label.font-weight-label.w-100
+          .btn.btn-block.btn-gray.font-weight-bolder.text-white.mt-2
+            Select CSV
+            = fa_icon 'upload'
+          .hide
+            %input{name: 'goods_csv', type: 'file', accept: ".csv", onchange: "csv_upload_select(this);"}
+    .row
+      .col
+        #file-name
+      .col
+        = submit_tag 'Submit', class: 'btn btn-sm btn-success mt-2 hide', id: 'csv-submit-button'
+
+  .row#csv-upload-result

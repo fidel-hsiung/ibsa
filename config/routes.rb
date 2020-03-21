@@ -7,5 +7,10 @@ Rails.application.routes.draw do
   delete  'logout',     to: 'sessions#destroy'
   
   resources :users, except: [:show]
-  resources :goods, except: [:show]
+  resources :goods, except: [:show] do
+  	collection do
+  		get  :bulk_new
+  		post :bulk_create
+  	end
+  end
 end

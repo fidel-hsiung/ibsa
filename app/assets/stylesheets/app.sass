@@ -14,10 +14,18 @@ body.app
       &.footer
         flex: 0 1 40px
 
-  .index-table-panel
+  .sub-page
     background-color: $white
     border-radius: 10px
     padding: $spacer
+    .csv-example
+      img
+        width: 100%
+    #file-name
+      margin-top: 12px
+      font-style: italic
+      font-size: 20px
+      text-decoration: underline
 
   .action-panel
     background-color: $white
@@ -26,23 +34,3 @@ body.app
     margin: 0 auto
     max-width: 800px
     width: 100%
-    .text
-      margin-top: 20px
-      margin-left: 20px
-    &.user-panel
-      .sub-title
-        font-weight: 400
-        font-size: 2rem
-      .name
-        font-weight: 450
-        font-size: 2.3rem
-        margin-left: $spacer * 2
-      .text-danger
-        font-size: 1.2rem
-      .attr-name
-        font-size: 16px
-        font-weight: 350
-      .attr-content
-        font-size: 16px
-        font-weight: 250
-        word-wrap: break-word
