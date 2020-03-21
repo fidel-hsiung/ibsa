@@ -25,7 +25,7 @@ RSpec.describe 'Sessions', type: :request do
     it 'should change session user_id and redirect_to root if valid email and password' do
       post '/sessions', params: {sessions: {email: @user.email, password: 'test1234'}}
       expect(session[:user_id]).to eq @user.id
-      expect(response).to redirect_to root_path
+      expect(response).to redirect_to goods_path
     end
 
     it 'should not change session user_id and render new if invalid email and password' do

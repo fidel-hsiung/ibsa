@@ -3,13 +3,15 @@
     .col
       %h2 Bulk Upload Goods
   .row
-    .ml-3 You can upload a csv file to bulk create goods. However the csv file should follow the following guidance.
+    %p.ml-3 You can upload a csv file to bulk create goods. However the csv file should follow the following guidance.
     %ul
       %li The csv should have a header, and the order is 'Type', 'Name', 'Source', 'Destination', 'Consignment ID', 'Entry At', 'Exit At'
       %li The first column of the csv should be the index of goods
       %li The attributes are case sensitive, that is to say they should be consistent. (eg: Do not mix Food and food)
       %li The attributes are checking with 100% match. (eg: do not mix Australia/Sydney, AustraliaSydney, Sydney)
       %li The Entry At and Exit At are using Melbourne time.
+      %li The Type, Name, Source, Entry At and Consignment ID must be present for the good incoming to the facility
+      %li The Exit At, Destination and Consignment ID must be present for the good has left the facility.
   %hr
   .row.csv-example
     %p.ml-3 Example as following image:
@@ -28,6 +30,6 @@
       .col
         #file-name
       .col
-        = submit_tag 'Submit', class: 'btn btn-sm btn-success mt-2 hide', id: 'csv-submit-button'
+        = submit_tag 'Submit', class: 'btn btn-sm btn-success mt-2 hide', id: 'csv-submit-button', data: { disable_with: 'Please wait' }
 
-  .row#csv-upload-result
+  #csv-upload-result.mt-4

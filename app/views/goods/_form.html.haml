@@ -16,7 +16,7 @@
       .col-6= f.input :name
       .col-6= f.input :source
       .col-6= f.input :destination
-      .col-6= f.input :consignment_id
+      .col-6= f.input :consignment_id, label: 'Consignment ID'
       .col-6= f.input :left_facility, collection: [['True', true], ['False', false]], prompt: 'Select'
     %hr
     .row

@@ -41,6 +41,10 @@ class GoodsController < ApplicationController
   end
 
   def bulk_create
+    @response = {}
+    if params[:goods_csv].present?
+      @response = GoodsBulkUpload.new(csv: params[:goods_csv]).build
+    end
   end
 
   private

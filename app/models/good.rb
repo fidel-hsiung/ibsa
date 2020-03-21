@@ -1,7 +1,8 @@
 class Good < ApplicationRecord
 
-	validates_presence_of :consignment_id, :category, :name, :destination, :entry_at
+	validates_presence_of :consignment_id, :category, :name, :source, :entry_at
 	validates_presence_of :exit_at, :destination, if: :left_facility?
+  validates_uniqueness_of :consignment_id
 	validates :left_facility, inclusion: {in: [true, false], message: "cannot be blank"}
 	validate :time_valid?
 

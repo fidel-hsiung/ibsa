@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :good do
-    category { "MyString" }
-    name { "MyString" }
-    source { "MyString" }
-    destination { "MyString" }
-    consignment_id { "MyString" }
-    entry_at { "2020-03-21 19:14:38" }
-    exit_at { "2020-03-21 19:14:38" }
+    category                     { 'Textile' }
+    name                         { 'Rolls of Cotton' }
+    source                       { 'Australia/Sydney' }
+    destination                  { 'Australia/Perth' }
+    sequence(:consignment_id)    { |n| "AS100#{n}AP" }
+    entry_at                     { '11/01/2019 18:53' }
+    exit_at                      { '12/01/2019 07:45' }
   end
 end

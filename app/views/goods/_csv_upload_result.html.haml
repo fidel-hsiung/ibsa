@@ -1,0 +1,15 @@
+%h4 Upload Results
+%p= "CSV upload #{@response[:result] ? 'successful' : 'failed'}"
+%ul
+  %li= "Total entries in CSV: #{@response[:total_count]}"
+  %li= "Entries added: #{@response[:success_count]}"
+  %li= "Number of errors: #{@response[:failed_count]}"
+  - if @response[:failed_entries].present?
+    %li
+      Reason(s):
+      %ul
+        - @response[:failed_entries].each do |failed_entry|
+          %li
+            %strong= "Row #{failed_entry[:row_num]}"
+            &nbsp;-&nbsp;
+            = failed_entry[:reason]
