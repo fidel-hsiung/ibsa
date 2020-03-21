@@ -12,117 +12,92 @@
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/users", type: :request do
+RSpec.describe 'users', type: :request do
   # User. As you add validations to User, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  before do
+    @user = create(:user)
+    login_as(@user)
+  end
 
-  describe "GET /index" do
-    it "renders a successful response" do
-      User.create! valid_attributes
-      get users_url
+  describe 'GET /users' do
+    it 'should load resources and render template' do
+      get '/users'
       expect(response).to be_successful
+      expect(response).to render_template :index
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
-      user = User.create! valid_attributes
-      get user_url(user)
+  describe 'GET /users/:id' do
+    it 'should load requested user and render template' do
+      get "/users/#{@user.id}"
+      expect(assigns(:user)).to eq @user
       expect(response).to be_successful
+      expect(response).to render_template :show
     end
   end
 
-  describe "GET /new" do
-    it "renders a successful response" do
-      get new_user_url
+  describe 'GET /new' do
+    it "should have successful response and render template" do
+      get '/users/new'
       expect(response).to be_successful
+      expect(response).to render_template :new
     end
   end
 
-  describe "GET /edit" do
-    it "render a successful response" do
-      user = User.create! valid_attributes
-      get edit_user_url(user)
+  describe 'GET /users/:id/edit' do
+    it 'should load requested user and render template' do
+      get "/users/#{@user.id}/edit"
+      expect(assigns(:user)).to eq @user
       expect(response).to be_successful
+      expect(response).to render_template :edit
     end
   end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new User" do
-        expect {
-          post users_url, params: { user: valid_attributes }
-        }.to change(User, :count).by(1)
-      end
-
-      it "redirects to the created user" do
-        post users_url, params: { user: valid_attributes }
-        expect(response).to redirect_to(user_url(User.last))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "does not create a new User" do
-        expect {
-          post users_url, params: { user: invalid_attributes }
-        }.to change(User, :count).by(0)
-      end
-
-      it "renders a successful response (i.e. to display the 'new' template)" do
-        post users_url, params: { user: invalid_attributes }
-        expect(response).to be_successful
-      end
-    end
-  end
-
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested user" do
-        user = User.create! valid_attributes
-        patch user_url(user), params: { user: new_attributes }
-        user.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "redirects to the user" do
-        user = User.create! valid_attributes
-        patch user_url(user), params: { user: new_attributes }
-        user.reload
-        expect(response).to redirect_to(user_url(user))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
-        user = User.create! valid_attributes
-        patch user_url(user), params: { user: invalid_attributes }
-        expect(response).to be_successful
-      end
-    end
-  end
-
-  describe "DELETE /destroy" do
-    it "destroys the requested user" do
-      user = User.create! valid_attributes
+  describe 'POST /users' do
+    it 'should create a new User and redirect_to user_url with valid parameters' do
       expect {
-        delete user_url(user)
-      }.to change(User, :count).by(-1)
+        post '/users', params: { user: FactoryBot.attributes_for(:user) }
+      }.to change(User, :count).by(1)
+      expect(response).to redirect_to(user_url(User.last))
     end
 
-    it "redirects to the users list" do
-      user = User.create! valid_attributes
-      delete user_url(user)
+    it 'should not create a new User and render template with invalid parameters' do
+      expect {
+        post '/users', params: { user: FactoryBot.attributes_for(:user, first_name: '') }
+      }.to_not change(User, :count)
+      expect(response).to render_template :new
+    end
+  end
+
+  describe 'PATCH /users' do
+    it 'should update the requested user and redirect with valid parameters' do
+      expect{
+        patch "/users/#{@user.id}", params: { user: {first_name: 'Test'} }
+      }.to change{@user.reload.first_name}.to('Test')
+      expect(assigns(:user)).to eq @user
+      expect(response).to redirect_to(user_url(@user))
+    end
+    
+    it 'should not update user and render template with invalid parameters' do
+      user = User.create! FactoryBot.attributes_for(:user)
+      expect{
+        patch "/users/#{@user.id}", params: {user: {first_name: 'Test', last_name: ''}}
+      }.to_not change{@user.reload.first_name}
+      expect(assigns(:user)).to eq @user
+      expect(response).to render_template :edit
+    end
+  end
+
+  describe 'DELETE /users' do
+    it 'should destroys the requested user' do
+      user = create(:user)
+      expect {
+        delete "/users/#{user.id}"
+      }.to change(User, :count).by(-1)
+      expect(assigns(:user)).to eq user
+      expect(flash[:notice]).to eq 'User was successfully destroyed.'
       expect(response).to redirect_to(users_url)
     end
   end

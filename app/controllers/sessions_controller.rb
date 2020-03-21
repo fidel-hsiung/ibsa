@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def new
     if current_user
       flash[:notice] = 'You have already login.'
-      redirect_to root_url
+      redirect_to root_path
     else
       render :new
     end
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params.dig(:sessions, :password))
       session[:user_id] = user.id
       flash[:notice] = 'User successfully logged in!'
-      redirect_to root_url
+      redirect_to root_path
     else
       flash.now[:alert] = 'Email or password is invalid'
       render :new
@@ -27,6 +27,6 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     flash[:notice] = 'User successfully logged out!'
-    redirect_to root_url
+    redirect_to root_path
   end
 end
