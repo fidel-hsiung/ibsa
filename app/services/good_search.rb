@@ -6,26 +6,16 @@ class GoodSearch
   def records
     goods = Good.order('entry_at desc')
 
-    if category.present?
-      goods = goods.where("category = ?", category.strip)
-    end
+    goods = goods.where("category = ?", category.strip) if category.present?
 
-    if name.present?
-      goods = goods.where("name ilike ?", "%#{name.strip}%")
-    end
+    goods = goods.where("name ilike ?", "%#{name.strip}%") if name.present?
 
-    if source.present?
-      goods = goods.where("source = ?", source.strip)
-    end
+    goods = goods.where("source = ?", source.strip) if source.present?
 
-    if destination.present?
-      goods = goods.where("destination = ?", destination.strip)
-    end
+    goods = goods.where("destination = ?", destination.strip) if destination.present?
 
-    if consignment_id.present?
-      goods = goods.where("consignment_id = ?", consignment_id.strip)
-    end
-
+    goods = goods.where("consignment_id = ?", consignment_id.strip) if consignment_id.present?
+      
     if entry_at_day.present?
       entry_day = entry_at_day.to_date
       goods = goods.where("entry_at >= ? AND entry_at <= ?", entry_day.beginning_of_day, entry_day.end_of_day)
@@ -36,9 +26,7 @@ class GoodSearch
       goods = goods.where("exit_at >= ? AND exit_at <= ?", exit_day.beginning_of_day, exit_day.end_of_day)
     end
 
-    unless left_facility.blank?
-      goods = goods.where("left_facility = ?", left_facility_value)
-    end
+    goods = goods.where("left_facility = ?", left_facility_value) unless left_facility.blank?
 
     goods
   end

@@ -1,0 +1,6 @@
+,Type,Name,Source,Destination,Consignment ID,Entry At,Exit At
+1,Food,Coconuts,Australia/Sydney,Australia/Adelaide,AS1001AA,11/01/2019 16:15,12/01/2019 07:45
+2,Liquid,Edible Oil (10L),Australia/Adelaide,Australia/Melbourne,AA1031AM,11/01/2019 18:53,12/01/2019 07:45
+3,Paper,Roll of Paper,Australia/Perth,Australia/Sydney,AP1005AS,12/01/2019 07:45,
+4,Textile,Rolls of Cotton,Australia/Melbourne,Australia/Perth,AM1101AP,14/01/2019 07:45,
+5,Wood,Wooden Boards 20"x20",Australia/Perth,Australia/Adelaide,AP1110AA,14/01/2019 07:45,16/01/2019 10:33

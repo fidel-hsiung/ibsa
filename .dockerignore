@@ -1,0 +1,30 @@
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+/public/packs/*
+/public/system/
+/public/assets
+!/log/.keep
+!/tmp/.keep
+/dump*.rdb
+/coverage
+/storage
+*.DS_Store
+
+# Ignore node_modules
+/node_modules/*
+
+# Ignore bundler config.
+/.bundle
+
+test/*
+
+# Ignore Byebug command history file.
+.byebug_history
+
+# Ignore .git as it's not needed with the docker built.
+.git
+.cache
+
+
+/config/master.key
