@@ -2,7 +2,7 @@ class GoodsController < ApplicationController
   before_action :set_good, only: [:show, :edit, :update, :destroy]
 
   def index
-    @goods = Good.all
+    @goods = Good.page(params[:page]).per(15)
   end
 
   def new

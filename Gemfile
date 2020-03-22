@@ -37,6 +37,9 @@ gem 'jquery-rails'
 # Use simple_form to handle forms
 gem 'simple_form'
 
+# Pagination
+gem 'kaminari'
+
 # Use haml for html coding
 gem "haml-rails", "~> 2.0"
 
@@ -78,6 +81,7 @@ group :test do
   gem 'chromedriver-helper'
   gem 'rails-controller-testing'
   gem 'simplecov', require: false
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

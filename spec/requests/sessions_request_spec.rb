@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Sessions', type: :request do
 
-  before(:all) do
+  before do
     @user = create(:user, password: 'test1234')
   end
 

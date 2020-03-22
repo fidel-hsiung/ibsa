@@ -13,3 +13,5 @@
               = fa_icon 'cog'
           - model::TABLE_BODYS.each do |body|
             %td= record.try(body.to_sym)
+
+= paginate records, window: 2

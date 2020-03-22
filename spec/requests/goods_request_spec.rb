@@ -11,6 +11,7 @@ RSpec.describe 'Goods', type: :request do
   describe 'GET /index' do
     it 'should load resources and render template' do
       get '/goods'
+      expect(assigns(:goods)).to eq [@good]
       expect(response).to be_successful
       expect(response).to render_template :index
     end

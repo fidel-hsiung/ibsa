@@ -10,6 +10,7 @@ RSpec.describe 'Users', type: :request do
   describe 'GET /users' do
     it 'should load resources and render template' do
       get '/users'
+      expect(assigns(:users)).to eq [@user]
       expect(response).to be_successful
       expect(response).to render_template :index
     end
