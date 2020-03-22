@@ -6,8 +6,8 @@ This is a Rails application that management the goods storage for a facility.
 
 It has applied docker and docker-compose to enable easy development envrionment setup, make sure u have docker installed on your machince, then run `docker-compose up` at the application root. Keep this terminal window open, then run `docker-compose exec app rails db:create db:migrate db:seed` at a new terminal window within application root. After db setup, you can visit http://localhost:3000 to visit the application, login details as below:
 
-* email:     'fidelhsiung@gmail.com'
-* password:  '12345678'
+* email:     fidelhsiung@gmail.com
+* password:  12345678
 
 However, for tests, you have to configure the envrionment on your local machine.
 
