@@ -4,7 +4,7 @@ class GoodSearch
   attr_accessor :category, :name, :source, :destination, :consignment_id, :entry_at_day, :exit_at_day, :left_facility
 
   def records
-    goods = Good.all
+    goods = Good.order('entry_at desc')
 
     if category.present?
       goods = goods.where("category = ?", category.strip)

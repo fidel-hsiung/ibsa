@@ -62,6 +62,6 @@ class GoodsController < ApplicationController
   end
 
   def good_search_params
-    params.require(:good_search).permit(:category, :name, :source, :destination, :consignment_id, :entry_at, :exit_at, :left_facility)
+    params.require(:good_search).permit(:category, :name, :source, :destination, :consignment_id, :entry_at_day, :exit_at_day, :left_facility)
   end
 end
