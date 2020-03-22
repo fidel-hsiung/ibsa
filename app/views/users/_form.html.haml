@@ -1,12 +1,18 @@
-= simple_form_for(@user) do |f|
-  = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-
-  .form-inputs
-    = f.input :email
-    = f.input :password
-    = f.input :first_name
-    = f.input :last_name
-
-  .form-actions
-    = f.button :submit
+.action-panel
+  .row.align-items-center.mb-3
+    .col
+      %h2= @user.new_record? ? 'Create new User' : "Edit User"
+  = simple_form_for(@user) do |f|
+    .row.align-items-center.mb-3
+      .col
+        = link_to 'Back', users_path, class: 'btn btn-dark btn-sm text-uppercase font-weight-bolder'
+      .col.text-right
+        - unless @user.new_record?
+          = link_to 'Delete', user_path(@user), method: :delete, class: 'btn btn-danger btn-sm text-uppercase font-weight-bolder', data: {confirm: "Are you sure you want to delete this user?"}
+        = f.button :button, "Cancel", type: "reset", class: "btn-light-gray btn-sm text-uppercase font-weight-bolder"
+        = f.button :submit, "Save", class: "btn-primary btn-sm text-uppercase font-weight-bolder"
+    .row
+      .col-6= f.input :email
+      .col-6= f.input :password
+      .col-6= f.input :first_name
+      .col-6= f.input :last_name

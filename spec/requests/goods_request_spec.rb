@@ -10,7 +10,16 @@ RSpec.describe 'Goods', type: :request do
 
   describe 'GET /index' do
     it 'should load resources and render template' do
+      expect_any_instance_of(GoodSearch).to receive(:records).and_return(Good.all)
       get '/goods'
+      expect(assigns(:goods)).to eq [@good]
+      expect(response).to be_successful
+      expect(response).to render_template :index
+    end
+
+    it 'should load resources and render template' do
+      expect_any_instance_of(GoodSearch).to receive(:records).and_return(Good.all)
+      get '/goods', params: { good_search: {consignment_id: @good.consignment_id} }
       expect(assigns(:goods)).to eq [@good]
       expect(response).to be_successful
       expect(response).to render_template :index

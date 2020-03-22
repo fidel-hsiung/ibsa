@@ -9,8 +9,5 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.timestamps
     end
     add_index :users, :email, unique: true
-
-    User.reset_column_information
-    User.create(email: 'fidelhsiung@gmail.com', password: '12345678', first_name: 'Feifei', last_name: 'Xiong')
   end
 end

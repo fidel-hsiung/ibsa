@@ -6,6 +6,11 @@ $(document).on('turbolinks:load', function() {
   	disabledTimeIntervals: false
   });
 
+  // Date picker init
+  $('.datepicker').datetimepicker({
+    format: "DD/MM/YYYY"
+  });
+
   // Toast message
   Array.from(document.getElementById('toast-msg').getElementsByClassName('toast-box')).forEach((element) => {
     element.getElementsByClassName('toast-action')[0].addEventListener('click', function(){

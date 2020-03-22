@@ -13,15 +13,7 @@
         .col-12
           = render 'header'
       .row.content
-        #toast-msg
-          - flash.each do |name, msg|
-            - if name == 'success'
-              .toast-box{data: {controller: 'toast'}}
-                .toast-content
-                  = msg
-                .toast-action
-                  %i.fas.fa-times{data: {action: 'click->toast#close'}}
-
+        = render 'toast'
         .col-sm-3.col-xl-2.pt-5.shadow-sm.bg-white
           = render 'sidenav'
         .col-sm-9.col-xl-10.p-4

@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = 'User was successfully created.'
-      redirect_to @user
+      redirect_to edit_user_path(@user)
     else
       render :new
     end
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:notice] = 'User was successfully updated.'
-      redirect_to @user
+      redirect_to edit_user_path(@user)
     else
       render :edit
     end
@@ -35,6 +35,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     flash[:notice] = 'User was successfully destroyed.'
+    session[:user_id] = nil if @user == current_user
     redirect_to users_url
   end
 

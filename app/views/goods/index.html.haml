@@ -5,4 +5,18 @@
     .col.text-right
       = link_to 'Bulk Upload', bulk_new_goods_path, class: 'btn btn-primary btn-sm'
       = link_to 'New Good', new_good_path, class: 'btn btn-primary btn-sm'
+  %hr
+  = simple_form_for @good_search, url: goods_path, method: 'GET' do |f|
+    .row
+      .col-4= f.input :category, label: false, placeholder: 'Type'
+      .col-4= f.input :name, label: false, placeholder: 'Name'
+      .col-4= f.input :consignment_id, label: false, placeholder: 'Consignment ID'
+      .col-4= f.input :source, label: false, placeholder: 'Source'
+      .col-4= f.input :destination, label: false, placeholder: 'Destination'
+      .col-4= f.input :left_facility, label: false, placeholder: 'Status', collection: [['In Facility', false], ['Left Facility', true]], prompt: 'Select'
+      .col-6= f.input :entry_at_day, label: false, placeholder: 'Arrival Date', input_html: { class: 'datepicker' }
+      .col-6= f.input :exit_at_day, label: false, placeholder: 'Left Date', input_html: { class: 'datepicker' }
+      .col
+        = f.button :submit, "Search", class: "btn btn-sm btn-success"
+        = link_to 'Reset', goods_path, class: 'btn btn-dark btn-sm text-uppercase font-weight-bolder'
   = render 'index_table', model: Good, records: @goods

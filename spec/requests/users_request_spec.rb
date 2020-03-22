@@ -38,7 +38,7 @@ RSpec.describe 'Users', type: :request do
       expect {
         post '/users', params: { user: FactoryBot.attributes_for(:user) }
       }.to change(User, :count).by(1)
-      expect(response).to redirect_to(user_url(User.last))
+      expect(response).to redirect_to(edit_user_url(User.last))
     end
 
     it 'should not create a new User and render template with invalid parameters' do
@@ -55,7 +55,7 @@ RSpec.describe 'Users', type: :request do
         patch "/users/#{@user.id}", params: { user: {first_name: 'Test'} }
       }.to change{@user.reload.first_name}.to('Test')
       expect(assigns(:user)).to eq @user
-      expect(response).to redirect_to(user_url(@user))
+      expect(response).to redirect_to(edit_user_url(@user))
     end
     
     it 'should not update user and render template with invalid parameters' do

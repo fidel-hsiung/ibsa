@@ -6,8 +6,8 @@ class Good < ApplicationRecord
 	validates :left_facility, inclusion: {in: [true, false], message: "cannot be blank"}
 	validate :time_valid?
 
-  TABLE_HEADS = ['Consignment ID', 'Type', 'Name', 'Source', 'Destination', 'Entry At', 'Exit At']
-  TABLE_BODYS = ['consignment_id', 'category', 'name', 'source', 'destination', 'entry_at_aus', 'exit_at_aus']
+  TABLE_HEADS = ['Consignment ID', 'Type', 'Name', 'Source', 'Destination', 'Entry At', 'Exit At', 'Status']
+  TABLE_BODYS = ['consignment_id', 'category', 'name', 'source', 'destination', 'entry_at_aus', 'exit_at_aus', 'status']
 
   def entry_at_aus
   	entry_at&.to_s(:time)
@@ -15,6 +15,10 @@ class Good < ApplicationRecord
 
   def exit_at_aus
   	exit_at&.to_s(:time)
+  end
+
+  def status
+    left_facility? ? 'Left Facility' : 'In Facility'
   end
 
   private

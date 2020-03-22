@@ -2,7 +2,12 @@ class GoodsController < ApplicationController
   before_action :set_good, only: [:show, :edit, :update, :destroy]
 
   def index
-    @goods = Good.page(params[:page]).per(15)
+    if params[:good_search].present?
+      @good_search = GoodSearch.new(good_search_params)
+    else
+      @good_search = GoodSearch.new
+    end
+    @goods = @good_search.records.page(params[:page]).per(10)
   end
 
   def new
@@ -54,5 +59,9 @@ class GoodsController < ApplicationController
 
   def good_params
     params.require(:good).permit(:category, :name, :source, :destination, :consignment_id, :entry_at, :exit_at, :left_facility)
+  end
+
+  def good_search_params
+    params.require(:good_search).permit(:category, :name, :source, :destination, :consignment_id, :entry_at, :exit_at, :left_facility)
   end
 end
