@@ -4,11 +4,14 @@ class ApplicationController < ActionController::Base
 	before_action :authenticated_user!
 
 	def current_user
-		if session[:user_id]
-			@current_user ||= User.find(session[:user_id])
+		return nil unless session[:user_id]
+		return @current_user if @current_user.present?
+		if (user = User.find_by(id: session[:user_id]))
+			@current_user = user
 		else
-			@current_user = nil
+			session[:user_id] = nil
 		end
+		@current_user
 	end
 
 	protected

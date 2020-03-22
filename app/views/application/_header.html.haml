@@ -1,5 +1,7 @@
 %nav.navbar.navbar-custom
   = link_to 'IBSA Goods Management', root_path, class: 'navbar-brand pt-2 pb-2'
 
+  %i Hi #{current_user.full_name}
+
   = link_to logout_path, method: :delete do
     = fa_icon 'sign-out'

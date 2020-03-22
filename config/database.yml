@@ -24,8 +24,8 @@ default: &default
 development:
   <<: *default
   database: ibsa_development
-  host: database
-  username: postgres
+  host: database           # Docker service, remove it if u are not using docker to build development envrionment
+  username: postgres       # Docker service, remove it if u are not using docker to build development envrionment
   password:
   port: 5432
 
@@ -62,8 +62,6 @@ development:
 test:
   <<: *default
   database: ibsa_test
-  host: database
-  username: postgres
   password:
   port: 5432
 
